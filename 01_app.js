@@ -27,7 +27,7 @@ app.get('/', function (req, res) {
 		//console.log(JSON.stringfy(resultat));
 		// transfert du contenu vers la vue index.ejs (renders)
 		// affiche le contenu de la BD 
-	  	res.render('gabarit.ejs', {adresses: resultat});
+	  	res.render('accueil.ejs', {adresses: resultat});
   	});
 });
 
