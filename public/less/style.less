@@ -1,0 +1,170 @@
+@couleurPrincipale: #34495e;
+@couleurBlanche: #fff;
+@couleurGrisPale: #ccc;
+@couleurGris: #aaa;
+@couleurNoire: #000;
+
+body {
+	display:flex;
+	flex-direction:column;
+	font-family:arial;
+	/*////////////////////////// HEADER */
+	header {
+		background-color:@couleurPrincipale;
+		display:flex;
+		flex-direction:column;
+		padding:5px;
+
+		h1 {
+			color: @couleurBlanche;
+			margin: 0 auto;
+			padding: 1em;
+		}
+		/*////////////////////////// NAVIGATION */
+		nav {
+			ul{
+				list-style-type:none;
+				padding:0.5em;
+				margin: 0 auto;
+
+				li{
+					display:flex;
+					flex-direction:row;
+					justify-content:flex-start;
+
+					a{
+						display:flex;
+						justify-content: center;
+						text-decoration:none;
+						font-size:150%;
+						padding:0.5em;
+						color:@couleurBlanche;
+						flex:1;
+						transition:background-color 1s;
+					}
+
+					a:hover {
+						background-color:@couleurGris;
+					}
+				}
+			}
+		}
+	} /*FIN HEADER */
+	section {
+		margin: 0 2vw 0 2vw;
+
+		form {
+			display:flex;
+			flex-direction:column;
+
+			input[type = "text"] {
+				margin: 1em 0 0 0;
+				width: 300px;
+				border-radius: 10px;
+			}
+			input[type = "submit"] {
+				margin: 2em 0 4em 0;
+				width: 100px;
+				border-radius: 10px;
+			}
+		}
+
+		.tableau {
+			margin: 1em 0 14em 0;
+			border: 1px solid @couleurNoire;
+			tr{
+				border: 1px solid @couleurNoire;
+				th{
+					color: @couleurNoire;
+				}
+				td{
+					border: 1px solid @couleurNoire;
+				}
+			}
+		}
+	}
+	/*////////////////////////// FOOTER */
+	footer {
+		background-color:@couleurPrincipale;
+		color: @couleurBlanche;
+		height:80px;
+		display:flex;
+		flex-direction:row;
+		justify-content:center;
+		align-items:center;
+
+		div {
+			width:5%;
+
+			i {
+				color:@couleurBlanche;
+				transition:color 1s;
+			}
+
+			i:hover {
+				color:@couleurGrisPale;
+			}
+
+			a{
+				color:@couleurBlanche;
+				text-decoration: none;
+			}
+
+			a:hover {
+				color:@couleurGrisPale;
+			}
+		}
+	}/* FIN FOOTER */
+}
+
+
+/* //////////////////////////////////////////// Ipad */
+@media only screen and (min-width: 700px) {
+	body{
+		header {
+			justify-content:space-between;
+			align-items:center;
+
+			nav {
+				display:flex;
+				flex:1;
+
+				ul {
+					display:flex;
+					flex:1;
+					flex-direction:row;
+					justify-content:space-around;
+				}
+			}
+		}
+
+		section {
+			margin: 0 15vw 0 15vw;
+		}
+
+		footer {
+				div {
+					a{
+						.fa {
+							font-size: 2em;
+						}
+					}
+				}
+		}
+	}
+}
+
+
+/* //////////////////////////////////////////// Grand Écran */
+@media only screen and (min-width: 1100px) {
+	body{
+		header {
+			flex-direction:row;
+			justify-content:space-between;
+			align-items:center;
+		}
+		section {
+			margin: 0 15vw 0 15vw;
+		}
+	}
+}
