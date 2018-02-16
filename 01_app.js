@@ -5,6 +5,7 @@ app.use(express.static('public'));
 const bodyParser= require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
 const MongoClient = require('mongodb').MongoClient;
+const ObjectID = require('mongodb').ObjectID;
 /* on associe le moteur de vue au module «ejs» */
 app.set('view engine', 'ejs'); // générateur de template
 
@@ -40,7 +41,7 @@ app.get('/formulaire', function (req, res) {
 		// affiche le contenu de la BD 
 	  	res.render('formulaire.ejs', {adresses: resultat});
   	});
-})
+});
 
 ///////////////////////////////////////////////////// Route /membres
 app.get('/membres', function (req, res) {
@@ -51,4 +52,16 @@ app.get('/membres', function (req, res) {
 		// affiche le contenu de la BD 
 	  	res.render('membres.ejs', {adresses: resultat});
   	});
-})
+});
+
+///////////////////////////////////////////////////// Route /detruire:id
+app.get('/detruire/:id', (req, res) => {
+	let id  = ObjectID(req.params.id);
+	// Delete le ID de l'élément
+	db.collection('adresse').findOneAndDelete( {'_id': id} ,(err, resultat) => {
+		if (err) return res.send(500, err);
+		//ramene à la page Membres
+		res.redirect('/membres');
+	}) ;
+});
+
