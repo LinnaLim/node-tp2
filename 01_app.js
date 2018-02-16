@@ -65,3 +65,11 @@ app.get('/detruire/:id', (req, res) => {
 	}) ;
 });
 
+///////////////////////////////////////////////////// Route /ajouter
+app.get('/ajouter', (req, res) => {
+	let infoListe = {"prenom":"","nom":"","telephone":"","courriel":""};
+	db.collection('adresse').save( infoListe, (err, result) => {
+		if (err) return console.log(err);
+		res.redirect('/membres');
+	});
+});
