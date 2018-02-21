@@ -32,17 +32,6 @@ app.get('/', function (req, res) {
   	});
 });
 
-///////////////////////////////////////////////////// Route /formulaire
-app.get('/formulaire', function (req, res) {
-	let cursor = db.collection('adresse').find().toArray((err, resultat) =>{
-		if (err) return console.log(err);
-		//console.log(JSON.stringfy(resultat));
-		// transfert du contenu vers la vue index.ejs (renders)
-		// affiche le contenu de la BD 
-	  	res.render('formulaire.ejs', {adresses: resultat});
-  	});
-});
-
 ///////////////////////////////////////////////////// Route /membres
 app.get('/membres', function (req, res) {
 	let cursor = db.collection('adresse').find().toArray((err, resultat) =>{
@@ -50,7 +39,9 @@ app.get('/membres', function (req, res) {
 		//console.log(JSON.stringfy(resultat));
 		// transfert du contenu vers la vue index.ejs (renders)
 		// affiche le contenu de la BD 
-	  	res.render('membres.ejs', {adresses: resultat});
+		let cle = "";
+		let ordre = "";
+	  	res.render('membres.ejs', {adresses: resultat, cle, ordre });
   	});
 });
 
@@ -74,13 +65,33 @@ app.get('/ajouter', (req, res) => {
 	});
 });
 
-///////////////////////////////////////////////////// Route /ajouter
-app.get('/modifier', (req, res) => {
-	let cursor = db.collection('adresse').find().toArray((err, resultat) =>{
-		if (err) return console.log(err);
-		//console.log(JSON.stringfy(resultat));
-		// transfert du contenu vers la vue index.ejs (renders)
-		// affiche le contenu de la BD 
-	  	res.render('membres.ejs', {adresses: resultat});
-  	});
+///////////////////////////////////////////////////// Route /modifier
+app.post('/modifier', (req, res) => {
+    //console.log('req.body' + req.body);
+    var util = require("util");
+
+    var oModif = {
+        "_id": ObjectID(req.body['_id']),
+        prenom: req.body.prenom,
+        nom: req.body.nom,
+        telephone: req.body.telephone,
+        courriel: req.body.courriel
+    }    
+
+    db.collection('adresse').save(oModif, (err, result) => {
+        if (err) return console.log(err);
+        console.log('sauvegarder dans la BD');
+        res.redirect('/membres');
+    });
+});
+
+
+///////////////////////////////////////////////////// Route /trier
+app.get('/trier/:cle/:ordre', (req, res) => {
+    let cle = req.params.cle;
+    let ordre = (req.params.ordre == 'asc' ? 1 : -1);
+    let cursor = db.collection('adresse').find().sort(cle, ordre).toArray(function (err, resultat) {
+        ordre = ordre == 1 ? 'desc' : 'asc';
+        res.render('membres.ejs', {adresses: resultat, cle, ordre });
+    });
 });

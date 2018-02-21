@@ -8,20 +8,14 @@
 		</section>
 		<%- include('composants/footer') %>
 	</body>
+	<!-- <script type="text/javascript">
+		let btnsModif = document.querySelectorAll('.modifier');
+		for (btn of btnsModif){
+			btn.addEventListener('click', function(event){
+				
+				event.preventDefault();
 
-	<script type="text/javascript">
-		let elmSauver = document.querySelectorAll('.sauver');
-		//console.log('elmSauver = ' + elmSauver.length);
-		for (elm of elmSauver)
-		{
-			elm.addEventListener('click', function(){
-				/* 
-				console.log(this
-				.parentNode
-				.parentNode
-				.children[1].innerHTML)
-				*/
-				let laLigne = this.parentNode.parentNode;
+				let laLigne = btn.parentNode.parentNode;
 				let id = laLigne.children[0].innerHTML;
 				let nom = laLigne.children[1].innerHTML;
 				let prenom = laLigne.children[2].innerHTML;
@@ -29,7 +23,7 @@
 				let courriel = laLigne.children[4].innerHTML;
 
 				let elmForm = document.getElementById('mon_formulaire');
-				//console.log(elmForm.tagName);
+				//console.log(elmForm.tagName)
 				let elmInput = elmForm.querySelectorAll('input');
 				elmInput[0].value = id;
 				elmInput[1].value = nom;
@@ -37,18 +31,48 @@
 				elmInput[3].value = telephone;
 				elmInput[4].value = courriel;
 
+				elmForm.submit()
+
+			})
+		} 
+	</script> -->
+	<script type="text/javascript">
+		let btnsModif = document.querySelectorAll('.modifier');
+		console.log(btnsModif)
+		//let formModif = document.getElementById('formModif');
+		for(let btn of btnsModif){
+			btn.addEventListener('click', (evt) =>{
+				evt.preventDefault();
+				//formModif.style.display = "flex";
+
+				// Extraction des donnés
+				let parent = btn.parentNode.parentNode;
+				console.log(parent);
+				let id = parent.querySelector("._id").innerText;
+				console.log(id);
+				let prenom = parent.querySelector(".prenom").innerText;
+				let nom = parent.querySelector(".nom").innerText;
+				let telephone = parent.querySelector(".telephone").innerText;
+				let courriel = parent.querySelector(".courriel").innerText;
+				//console.log(id,prenom,nom,telephone,courriel);
+
+				// Détection du formulaire
+				let elmForm = document.getElementById('mon_formulaire');
+				//console.log(elmForm);
+				let idInput = elmForm.querySelector("#inputId");
+				let prenomInput = elmForm.querySelector("#inputPrenom");
+				let nomInput = elmForm.querySelector("#inputNom");
+				let telephoneInput = elmForm.querySelector("#inputTelephone");
+				let courrielInput = elmForm.querySelector("#inputCourriel");
+				// Mettre l'information pour le formulaire
+				idInput.value = id;
+				prenomInput.value = prenom;
+				nomInput.value = nom;
+				telephoneInput.value = telephone;
+				courrielInput.value = courriel;
+
 				elmForm.submit();
 			});
-		} 
-
-		let formulaire = document.querySelector('#mon_formulaire');
-		function pasAfficherForm(){
-			formulaire.classList.add("pasAfficher");
 		}
-		function afficherForm(){
-			formulaire.classList.remove("pasAfficher");
-		}
-		
-	</script>
-
+ 	</script>
 </html>
