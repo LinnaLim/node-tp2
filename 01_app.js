@@ -33,7 +33,7 @@ app.get('/', function (req, res) {
 });
 
 ///////////////////////////////////////////////////// Route /membres
-app.get('/membres', function (req, res) {
+app.get('/adresses', function (req, res) {
 	let cursor = db.collection('adresse').find().toArray((err, resultat) =>{
 		if (err) return console.log(err);
 		//console.log(JSON.stringfy(resultat));
