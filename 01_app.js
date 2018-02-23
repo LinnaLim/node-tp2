@@ -98,7 +98,7 @@ app.post('/modifier', (req, res) => {
 app.get('/trier/:cle/:ordre', (req, res) => {
     let cle = req.params.cle;
     let ordre = (req.params.ordre == 'asc' ? 1 : -1);
-    let cursor = db.collection('adresse').find().sort(cle, ordre).toArray(function (err, resultat) {
+    let cursor = db.collection('adresse').find().sort(cle, ordre).toArray((err, resultat) =>{
         ordre = ordre == 1 ? 'desc' : 'asc';
         res.render('adresses.ejs', {adresses: resultat, cle, ordre });
     });
@@ -123,7 +123,6 @@ app.get('/vider', (req, res) => {
 
 
 //////////////////////////////////////////////////// Route /rechercher
-
 app.post('/rechercher', (req, res) => {
 	let inputRecherche = req.body.requete;
     let requete = { 
@@ -134,9 +133,25 @@ app.post('/rechercher', (req, res) => {
     						{ 'courriel': {'$regex': '^' + inputRecherche,  '$options' : 'i' }}
     				]};
 
-    db.collection('adresse').find(requete, (err, result) => {
+    db.collection('adresse').find(requete).toArray((err, resultat) => {
+    	console.log(resultat);
         if (err) return console.log(err);
         console.log('sauvegarder dans la BD');
-        res.redirect('/adresses');
+        let cle = "";
+		let ordre = "";
+        res.render('adresses.ejs', {adresses: resultat, cle, ordre });
     });
+});
+
+
+///////////////////////////////////////////////////// Route /profil
+app.get('/profil/:id', (req, res) =>{
+	let id  = ObjectID(req.params.id);
+	let cursor = db.collection('adresse').find({'_id': id}).toArray((err, resultat) =>{
+		if (err) return console.log(err);
+		//console.log(JSON.stringfy(resultat));
+		// transfert du contenu vers la vue index.ejs (renders)
+		// affiche le contenu de la BD 
+	  	res.render('profil.ejs', {adresses: resultat});
+  	});
 });
