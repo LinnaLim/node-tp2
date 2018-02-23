@@ -9,6 +9,8 @@ const ObjectID = require('mongodb').ObjectID;
 /* on associe le moteur de vue au module «ejs» */
 app.set('view engine', 'ejs'); // générateur de template
 
+const peupler = require("./modules/peupler");
+const util =  require("util");
 
 ////////////////////////////////////////////////////////// Connexion à MongoDB à au Serveur Node.js
 let db // variable qui contiendra le lien sur la BD
@@ -41,7 +43,7 @@ app.get('/adresses', function (req, res) {
 		// affiche le contenu de la BD 
 		let cle = "";
 		let ordre = "";
-	  	res.render('membres.ejs', {adresses: resultat, cle, ordre });
+	  	res.render('adresses.ejs', {adresses: resultat, cle, ordre });
   	});
 });
 
@@ -52,7 +54,7 @@ app.get('/detruire/:id', (req, res) => {
 	db.collection('adresse').findOneAndDelete( {'_id': id} ,(err, resultat) => {
 		if (err) return res.send(500, err);
 		//ramene à la page Membres
-		res.redirect('/membres');
+		res.redirect('/adresses');
 	}) ;
 });
 
@@ -61,7 +63,7 @@ app.get('/ajouter', (req, res) => {
 	let infoListe = {"prenom":"","nom":"","telephone":"","courriel":""};
 	db.collection('adresse').save( infoListe, (err, result) => {
 		if (err) return console.log(err);
-		res.redirect('/membres');
+		res.redirect('/adresses');
 	});
 });
 
@@ -81,7 +83,7 @@ app.post('/modifier', (req, res) => {
     db.collection('adresse').save(oModif, (err, result) => {
         if (err) return console.log(err);
         console.log('sauvegarder dans la BD');
-        res.redirect('/membres');
+        res.redirect('/adresses');
     });
 });
 
@@ -92,6 +94,16 @@ app.get('/trier/:cle/:ordre', (req, res) => {
     let ordre = (req.params.ordre == 'asc' ? 1 : -1);
     let cursor = db.collection('adresse').find().sort(cle, ordre).toArray(function (err, resultat) {
         ordre = ordre == 1 ? 'desc' : 'asc';
-        res.render('membres.ejs', {adresses: resultat, cle, ordre });
+        res.render('adresses.ejs', {adresses: resultat, cle, ordre });
     });
 });
+
+//////////////////////////////////////////////////// Route /peupler
+app.get('/peupler', (req, res) => {
+	let infoPeupler = peupler();
+	db.collection('adresse').insert(infoPeupler, (err, result) => {
+		if (err) return console.log(err);
+		res.redirect('/adresses');
+	});
+});
+
