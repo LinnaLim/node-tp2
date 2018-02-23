@@ -91,7 +91,7 @@ body {
 							
 						}
 
-						& #idCell, & ._id, & #telCell, & .telephone, & #courrielCell, & .courriel {
+						& #idCell, & ._id, & #telCell, & .telephone, & #courrielCell, & .courriel, & .domaine {
 							display: none;
 						}
 						& td{
@@ -103,7 +103,7 @@ body {
 		}
 
 		& #containerProfil {
-			
+			padding: 1em 0 10em 0;
 		}
 		
 	}
@@ -189,7 +189,7 @@ body {
 
 
 /* //////////////////////////////////////////// Grand Écran */
-@media only screen and (min-width: 1100px) {
+@media only screen and (min-width: 1024px) {
 	& body{
 		& header {
 			flex-direction:row;
@@ -197,11 +197,11 @@ body {
 			align-items:center;
 		}
 		& section {
-			margin: 0 15vw 0 15vw;
+			margin: 0 8vw 0 8vw;
 			& #containerTableau {
 				& .tableau {
 					& tr {
-						& ._id, & #idCell, & .courriel, & #courrielCell{
+						& ._id, & #idCell, & .courriel, & #courrielCell, & .domaine{
 							display: table-cell;
 						}
 					}

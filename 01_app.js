@@ -131,7 +131,8 @@ app.post('/rechercher', (req, res) => {
     						{ 'nom': {'$regex': '^' + inputRecherche,  '$options' : 'i' }},
     						{ 'telephone': {'$regex': '^' + inputRecherche,  '$options' : 'i' }},
     						{ 'courriel': {'$regex': '^' + inputRecherche,  '$options' : 'i' }}
-    				]};
+    				]
+    			};
 
     db.collection('adresse').find(requete).toArray((err, resultat) => {
     	console.log(resultat);
