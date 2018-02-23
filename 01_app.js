@@ -107,3 +107,10 @@ app.get('/peupler', (req, res) => {
 	});
 });
 
+//////////////////////////////////////////////////// Route /vider
+app.get('/vider', (req, res) => {
+	db.collection('adresse').remove(req.body, (err, result) => {
+		if (err) return console.log(err);
+		res.redirect('/adresses');
+	});
+});
