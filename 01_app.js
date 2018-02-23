@@ -16,7 +16,7 @@ const ObjectID = require('mongodb').ObjectID;
 app.set('view engine', 'ejs'); // générateur de template
 
 const peupler = require("./modules/peupler");
-const util =  require("util");
+let util =  require("util");
 
 ////////////////////////////////////////////////////////// Connexion à MongoDB à au Serveur Node.js
 let db // variable qui contiendra le lien sur la BD
@@ -76,9 +76,9 @@ app.get('/ajouter', (req, res) => {
 ///////////////////////////////////////////////////// Route /modifier
 app.post('/modifier', (req, res) => {
     //console.log('req.body' + req.body);
-    var util = require("util");
+    //let util = require("util");
 
-    var oModif = {
+    let oModif = {
         "_id": ObjectID(req.body['_id']),
         prenom: req.body.prenom,
         nom: req.body.nom,
@@ -119,4 +119,24 @@ app.get('/vider', (req, res) => {
 		if (err) return console.log(err);
 		res.redirect('/adresses');
 	});
+});
+
+
+//////////////////////////////////////////////////// Route /rechercher
+
+app.post('/rechercher', (req, res) => {
+	let inputRecherche = req.body.requete;
+    let requete = { 
+    				$or: [ 
+    						{ 'prenom': {'$regex': '^' + inputRecherche,  '$options' : 'i' }},
+    						{ 'nom': {'$regex': '^' + inputRecherche,  '$options' : 'i' }},
+    						{ 'telephone': {'$regex': '^' + inputRecherche,  '$options' : 'i' }},
+    						{ 'courriel': {'$regex': '^' + inputRecherche,  '$options' : 'i' }}
+    				]};
+
+    db.collection('adresse').find(requete, (err, result) => {
+        if (err) return console.log(err);
+        console.log('sauvegarder dans la BD');
+        res.redirect('/adresses');
+    });
 });

@@ -9,30 +9,30 @@ body {
 	flex-direction:column;
 	font-family:arial;
 	/*////////////////////////// HEADER */
-	header {
+	& header {
 		background-color:@couleurPrincipale;
 		display:flex;
 		flex-direction:column;
 		padding:5px;
 
-		h1 {
+		& h1 {
 			color: @couleurBlanche;
 			margin: 0 auto;
 			padding: 1em;
 		}
 		/*////////////////////////// NAVIGATION */
-		nav {
-			ul{
+		& nav {
+			& ul{
 				list-style-type:none;
 				padding:0.5em;
 				margin: 0 auto;
 
-				li{
+				& li{
 					display:flex;
 					flex-direction:row;
 					justify-content:flex-start;
 
-					a{
+					& a{
 						display:flex;
 						justify-content: center;
 						text-decoration:none;
@@ -46,35 +46,35 @@ body {
 						}
 					}
 
-					a:hover {
+					& a:hover {
 						background-color:@couleurGris;
 					}
 				}
 			}
 		}
 	} /*FIN HEADER */
-	section {
+	& section {
 		margin: 0 2vw 0 2vw;
 
-		.mon_formulaire {
+		& .mon_formulaire {
 			display:none;
 			flex-direction:column;
 
-			input[type = "text"] {
+			& input[type = "text"] {
 				margin: 1em 0 0 0;
 				width: 300px;
 				border-radius: 10px;
 			}
-			input[type = "submit"] {
+			& input[type = "submit"] {
 				margin: 2em 0 4em 0;
 				width: 100px;
 				border-radius: 10px;
 			}
 		}
-		#containerTableau {
+		& #containerTableau {
 			overflow-x:auto;
 			margin: 1em 0 14em 0;
-				.tableau {
+				& .tableau {
 				border-collapse: collapse;
 	    		border-spacing: 0;
 	    		width: 100%;
@@ -90,7 +90,11 @@ body {
 							}
 							
 						}
-						td{
+
+						& #idCell, & ._id, & #telCell, & .telephone, & #courrielCell, & .courriel {
+							display: none;
+						}
+						& td{
 							border: 1px solid @couleurNoire;
 							padding: 0.1em 0.5em 0.1em 0.5em;
 						}
@@ -100,7 +104,7 @@ body {
 		
 	}
 	/*////////////////////////// FOOTER */
-	footer {
+	& footer {
 		background-color:@couleurPrincipale;
 		color: @couleurBlanche;
 		height:80px;
@@ -109,24 +113,24 @@ body {
 		justify-content:center;
 		align-items:center;
 
-		div {
+		& div {
 			width:5%;
 
-			i {
+			& i {
 				color:@couleurBlanche;
 				transition:color 1s;
 			}
 
-			i:hover {
+			& i:hover {
 				color:@couleurGrisPale;
 			}
 
-			a{
+			& a{
 				color:@couleurBlanche;
 				text-decoration: none;
 			}
 
-			a:hover {
+			& a:hover {
 				color:@couleurGrisPale;
 			}
 		}
@@ -136,16 +140,16 @@ body {
 
 /* //////////////////////////////////////////// Ipad */
 @media only screen and (min-width: 700px) {
-	body{
-		header {
+	& body{
+		& header {
 			justify-content:space-between;
 			align-items:center;
 
-			nav {
+			& nav {
 				display:flex;
 				flex:1;
 
-				ul {
+				& ul {
 					display:flex;
 					flex:1;
 					flex-direction:row;
@@ -154,14 +158,23 @@ body {
 			}
 		}
 
-		section {
+		& section {
 			margin: 0 15vw 0 15vw;
+			& #containerTableau {
+				& .tableau {
+					& tr {
+						& .telephone, & #telCell{
+							display: table-cell;
+						}
+					}
+				}
+			}
 		}
 
-		footer {
-				div {
-					a{
-						.fa {
+		& footer {
+				& div {
+					& a {
+						& .fa {
 							font-size: 2em;
 						}
 					}
@@ -173,14 +186,23 @@ body {
 
 /* //////////////////////////////////////////// Grand Écran */
 @media only screen and (min-width: 1100px) {
-	body{
-		header {
+	& body{
+		& header {
 			flex-direction:row;
 			justify-content:space-between;
 			align-items:center;
 		}
-		section {
+		& section {
 			margin: 0 15vw 0 15vw;
+			& #containerTableau {
+				& .tableau {
+					& tr {
+						& ._id, & #idCell, & .courriel, & #courrielCell{
+							display: table-cell;
+						}
+					}
+				}
+			}
 		}
 	}
 }
