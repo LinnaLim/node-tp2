@@ -41,6 +41,9 @@ body {
 						color:@couleurBlanche;
 						flex:1;
 						transition:background-color 1s;
+						.menu{
+							padding-right: 0.5em;
+						}
 					}
 
 					a:hover {
@@ -68,26 +71,33 @@ body {
 				border-radius: 10px;
 			}
 		}
-
-		.tableau {
+		#containerTableau {
+			overflow-x:auto;
 			margin: 1em 0 14em 0;
-			border: 1px solid @couleurNoire;
-			tr{
+				.tableau {
+				border-collapse: collapse;
+	    		border-spacing: 0;
+	    		width: 100%;
 				border: 1px solid @couleurNoire;
-				th {
-					border: 1px solid @couleurNoire;
-					a {
-						color: @couleurNoire;
-						text-decoration: none;
-						padding: 0.25em 1em 0.25em 1em;
+					tr{
+						border: 1px solid @couleurNoire;
+						th {
+							border: 1px solid @couleurNoire;
+							a {
+								color: @couleurNoire;
+								text-decoration: none;
+								padding: 0.25em 1em 0.25em 1em;
+							}
+							
+						}
+						td{
+							border: 1px solid @couleurNoire;
+							padding: 0.1em 0.5em 0.1em 0.5em;
+						}
 					}
-					
 				}
-				td{
-					border: 1px solid @couleurNoire;
-				}
-			}
 		}
+		
 	}
 	/*////////////////////////// FOOTER */
 	footer {
