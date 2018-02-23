@@ -1,9 +1,15 @@
+//Express
 const express = require('express');
 const app = express();
-const fs = require('fs');
 app.use(express.static('public'));
+
+const fs = require('fs');
+
+// Body-parser
 const bodyParser= require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
+
+//MongoDb
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 /* on associe le moteur de vue au module «ejs» */
