@@ -10,5 +10,8 @@
 	"prenom": "Prenom",
 	"nom": "Nom",
 	"telephone": "Telephone",
-	"courriel": "Courriel"
+	"courriel": "Courriel",
+	"bienvenue": "Bienvenue",
+	"pAccueil": "Vous pouvez voir notre liste de membre.",
+	"bonneVisite": "Bonne Visite"
 }
