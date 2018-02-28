@@ -12,13 +12,20 @@ const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 /* on associe le moteur de vue au module «ejs» */
 app.set('view engine', 'ejs'); // générateur de template
-// i18n
-const i18n = require("i18n")
-/* Ajouter l'objet i18n à l'objet global «res» */
-app.use(i18n.init);
+
 // Cookie-parser
 var cookieParser = require('cookie-parser');
 app.use(cookieParser());
+
+// i18n
+const i18n = require("i18n");
+i18n.configure({ 
+   locales : ['fr', 'en'],
+   cookie : 'langueChoisie', 
+   directory : __dirname + '/locales' 
+});
+/* Ajouter l'objet i18n à l'objet global «res» */
+app.use(i18n.init);
 
 const peupler = require("./modules/peupler");
 let util =  require("util");
@@ -38,6 +45,12 @@ MongoClient.connect('mongodb://127.0.0.1:27017', (err, database) => {
 app.get('/', function (req, res) {
 	let cursor = db.collection('adresse').find().toArray((err, resultat) =>{
 		if (err) return console.log(err);
+		//console.log("cookie: langue ", req.cookies.langueChoisie);
+		//console.log(res.__('titreSite'));
+		//Langague par Défault est FR
+		if(req.cookies.langueChoisie == null){
+			res.cookie('langueChoisie', 'fr');
+		}
 		// affiche l'accueil'
 	  	res.render('accueil.ejs', {adresses: resultat});
   	});
@@ -165,26 +178,19 @@ app.get('/profil/:id', (req, res) =>{
 });
 
 
-///////////////////////////////////////////////////// Route /en
-app.get('/en', (req, res) => {
-	// 'en' est enregistré comme langue
-	res.setLocale('en');
-	// on en profite pour sauver la langue dans un cookie
-	res.cookie('moncookie', 'en');
-	// retourne le catalogue
-	console.log('res.getCatalog() = ' + res.getCatalog());
-	// retourne la langue qui a été choisie
-	console.log('res.getLocale() = ' + res.getLocale());
-	var bienvenue = 'hello';
-	console.log('en= ' + res.__('bienvenue');
-
-});
-
 ///////////////////////////////////////////////////// Route /en ou fr
 // Traduire MENU et TH de Tableau!!!!!!!!!
-app.get('/:locale(en|fr',  (req, res) => {
+app.get('/:locale(en|fr)',  (req, res) => {
+	// Sauver la langue dans un cookie
+	res.cookie('langueChoisie', req.params.locale);
 	// on récupère le paramètre de l'url pour enregistrer la langue
 	res.setLocale(req.params.locale);
+
+	console.log("PARAM: " + req.params.locale);
+	//console.log("cookie: langue ", req.cookies.langueChoisie);
+
 	// on peut maintenant traduire
-	console.log('res.__(leMotAtraduire) = ' + res.__(leMotAtraduire));
+	console.log(res.__('titreSite'));
+
+	res.redirect(req.headers.referer);
 });
