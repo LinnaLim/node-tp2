@@ -43,17 +43,12 @@ MongoClient.connect('mongodb://127.0.0.1:27017', (err, database) => {
 
 ///////////////////////////////////////////////////// Route /
 app.get('/', function (req, res) {
-	let cursor = db.collection('adresse').find().toArray((err, resultat) =>{
-		if (err) return console.log(err);
-		//console.log("cookie: langue ", req.cookies.langueChoisie);
-		//console.log(res.__('titreSite'));
-		//Langague par Défault est FR
+	
 		if(req.cookies.langueChoisie == null){
 			res.cookie('langueChoisie', 'fr');
 		}
 		// affiche l'accueil'
-	  	res.render('accueil.ejs', {adresses: resultat});
-  	});
+	  	res.render('accueil.ejs');
 });
 
 ///////////////////////////////////////////////////// Route /membres

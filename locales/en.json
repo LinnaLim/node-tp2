@@ -4,5 +4,10 @@
 	"adresses": "Addresses",
 	"peuplement": "Populating",
 	"vider": "Empty",
-	"courriel": "courriel"
+	"titreListe": "Member list",
+	"Id": "Id",
+	"prenom": "Name",
+	"nom": "Surname",
+	"telephone": "Telephone",
+	"courriel": "Email"
 }

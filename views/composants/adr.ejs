@@ -15,11 +15,11 @@ if(locals.cle){
 <div id="containerTableau">
     <table class="tableau">
     	<tr>
-    		<th id="idCell"><a href='/trier/_id/<%= objOrdre._id %>'>ID</a></th>
-    		<th id="prenomCell"><a href='/trier/prenom/<%= objOrdre.prenom %>'>Prenom</a></th> 
-    		<th id="nomCell"><a href='/trier/nom/<%= objOrdre.nom %>'>Nom</a></th>
-    		<th id="telCell"><a href='/trier/telephone/<%= objOrdre.telephone %>'>Telephone</a></th>
-            <th id="courrielCell"><a href='/trier/courriel/<%= objOrdre.courriel %>'>Courriel</a></th>
+    		<th id="idCell"><a href='/trier/_id/<%= objOrdre._id %>'><%= __("Id") %></a></th>
+    		<th id="prenomCell"><a href='/trier/prenom/<%= objOrdre.prenom %>'><%= __("prenom") %></a></th> 
+    		<th id="nomCell"><a href='/trier/nom/<%= objOrdre.nom %>'><%= __("nom") %></a></th>
+    		<th id="telCell"><a href='/trier/telephone/<%= objOrdre.telephone %>'><%= __("telephone") %></a></th>
+            <th id="courrielCell"><a href='/trier/courriel/<%= objOrdre.courriel %>'><%= __("courriel") %></a></th>
     		<th colspan="3"><a href="/ajouter"><i id="ajouter" class="fas fa-plus-circle"></i></a></th>
     	</tr>
         <tr>

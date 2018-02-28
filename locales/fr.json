@@ -4,5 +4,10 @@
 	"adresses": "Adresses",
 	"peuplement": "Peuplement",
 	"vider": "Vider",
-	"courriel": "courriel"
+	"titreListe": "Liste de membres",
+	"Id": "Id",
+	"prenom": "Prenom",
+	"nom": "Nom",
+	"telephone": "Telephone",
+	"courriel": "Courriel"
 }
