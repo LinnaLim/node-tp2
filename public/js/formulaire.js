@@ -23,7 +23,29 @@
 
 
 
-	
+	/////////////////////////////// Bouton Ajouter /////////////////////////////
+	let elmBoutonAjouter = document.getElementById('ajouter');
+	elmBoutonAjouter.addEventListener('click', (evt)=>{
+		evt.preventDefault();
+		xhr = new XMLHttpRequest();
+		xhr.open('POST', "ajax_ajouter", true);
+		data = {
+			"nom" : "",
+			"prenom" : "",
+			"telephone" : "",
+			"courriel" : ""
+		}
+		
+		sData = JSON.stringify(data);
+		xhr.setRequestHeader('Content-type', 'application/json');
+		xhr.send(sData);
+		if(xhr.readyState == 4 && xhr.status == 200){
+			let ligneTab = document.querySelector(".gabaritTr");
+			let clone = ligneTab.cloneNode(true);
+			clone.querySelector("._id").innerText = JSON.parse(xhr.responseText);
+		}
+	});
+
 
 	/////////////////////////////// Bouton Modifier /////////////////////////////
 	let btnsModif = document.querySelectorAll('.modifier');

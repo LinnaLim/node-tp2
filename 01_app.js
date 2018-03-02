@@ -52,7 +52,7 @@ app.get('/', function (req, res) {
 	  	res.render('accueil.ejs');
 });
 
-///////////////////////////////////////////////////// Route /membres
+///////////////////////////////////////////////////// Route /adresses
 app.get('/adresses', function (req, res) {
 	let cursor = db.collection('adresse').find().toArray((err, resultat) =>{
 		if (err) return console.log(err);
@@ -62,49 +62,6 @@ app.get('/adresses', function (req, res) {
 	  	res.render('adresses.ejs', {adresses: resultat, cle, ordre });
   	});
 });
-
-///////////////////////////////////////////////////// Route /detruire:id
-app.get('/detruire/:id', (req, res) => {
-	let id  = ObjectID(req.params.id);
-	// Delete le ID de l'élément
-	db.collection('adresse').findOneAndDelete( {'_id': id} ,(err, resultat) => {
-		if (err) return res.send(500, err);
-		//ramene à la page Membres
-		res.redirect('/adresses');
-	}) ;
-});
-
-///////////////////////////////////////////////////// Route /ajouter
-app.get('/ajouter', (req, res) => {
-	let infoListe = {"prenom":"","nom":"","telephone":"","courriel":""};
-	db.collection('adresse').save( infoListe, (err, result) => {
-		if (err) return console.log(err);
-		//ramene à la page Membres
-		res.redirect('/adresses');
-	});
-});
-
-///////////////////////////////////////////////////// Route /modifier
-app.post('/modifier', (req, res) => {
-    //console.log('req.body' + req.body);
-    //let util = require("util");
-    // Objet avec les champs modifiés
-    let oModif = {
-        "_id": ObjectID(req.body['_id']),
-        prenom: req.body.prenom,
-        nom: req.body.nom,
-        telephone: req.body.telephone,
-        courriel: req.body.courriel
-    }    
-    // Sauver l'objet dans la BDD
-    db.collection('adresse').save(oModif, (err, result) => {
-        if (err) return console.log(err);
-        //console.log('sauvegarder dans la BD');
-        //ramene à la page Membres
-        res.redirect('/adresses');
-    });
-});
-
 
 ///////////////////////////////////////////////////// Route /trier
 app.get('/trier/:cle/:ordre', (req, res) => {
