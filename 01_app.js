@@ -6,6 +6,7 @@ app.use(express.static('public'));
 const fs = require('fs');
 // Body-parser
 const bodyParser= require('body-parser');
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 //MongoDb
 const MongoClient = require('mongodb').MongoClient;
@@ -188,4 +189,24 @@ app.get('/:locale(en|fr)',  (req, res) => {
 	console.log(res.__('titreSite'));
 
 	res.redirect(req.headers.referer);
+});
+
+
+///////////////////////////////////////////////////// Route /ajax_modifier
+app.post('/ajax_modifier', (req, res) => {
+    // let oModif = {
+    //     "_id": ObjectID(req.body['_id']),
+    //     prenom: req.body.prenom,
+    //     nom: req.body.nom,
+    //     telephone: req.body.telephone,
+    //     courriel: req.body.courriel
+    // }    
+
+    req.body._id = ObjectID(req.body._id);
+    console.log(req.body._id);
+    // Sauver l'objet dans la BDD
+    db.collection('adresse').save(req.body, (err, result) => {
+        if (err) return console.log(err);
+        res.send(JSON.stringify(req.body));
+    });
 });
