@@ -1,27 +1,31 @@
 (function (){
+	/////////////////////////////// Bouton Detruire /////////////////////////////
+	let elmBoutonDetruire = document.querySelectorAll('.detruire');
+	for(let btn of elmBoutonDetruire){
+		btn.addEventListener('click', (evt) =>{
+			evt.preventDefault();
+			xhr = new XMLHttpRequest();
+			xhr.open('POST', "ajax_detruire", true);
 
-	// Notre code JavaScript pour effectuer un transfert AJAX
-	let elmBouton = document.getElementById('testAJAX');
-	elmBouton.addEventListener('click', ()=>{
-		console.log('ok');
-		xhr = new XMLHttpRequest();
-		xhr.open('POST', "ajax_modifier", true);
-		data = {
-			"nom" : "AAAA",
-			"prenom" : "BBBB",
-			"telephone" : "CCCC",
-			"courriel" : "DDDD",
-			"_id" : "5a96b0beaaea131f508700e8"
-		}
-		console.log(data);
-		sData = JSON.stringify(data);
-		xhr.setRequestHeader('Content-type', 'application/json');
-		xhr.send(sData);
-		xhr.addEventListener("readystatechange", traiterRequest, false);
-	});
+			let parent = btn.parentNode.parentNode;
+			let id = parent.querySelector("._id").innerText;
+			data = {
+				"id" : id
+			}
+
+			sData = JSON.stringify(data);
+			xhr.setRequestHeader('Content-type', 'application/json');
+			xhr.send(sData);
+			parent.parentNode.removeChild(parent);
+			xhr.addEventListener("readystatechange", traiterRequest, false);
+		});
+	}
 
 
 
+	
+
+	/////////////////////////////// Bouton Modifier /////////////////////////////
 	let btnsModif = document.querySelectorAll('.modifier');
 	console.log(btnsModif)
 	//let formModif = document.getElementById('formModif');
@@ -60,14 +64,15 @@
 
 
 	function traiterRequest(e)  {
-		console.log("xhr.readyState = " + xhr.readyState);
-		console.log("xhr.status = " + xhr.status);
+		//console.log("xhr.readyState = " + xhr.readyState);
+		//console.log("xhr.status = " + xhr.status);
 		if(xhr.readyState == 4 && xhr.status == 200){
-			console.log('ajax fonctionne')
+			//console.log('ajax fonctionne')
 			let  maReponse = JSON.parse(xhr.responseText);
-			console.log(xhr.responseText);
-			console.log(maReponse._id);
+			//console.log(xhr.responseText);
+			//console.log(maReponse._id);
 		}
+
 	}
 
 

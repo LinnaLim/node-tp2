@@ -20,11 +20,26 @@ if(locals.cle){
     		<th id="nomCell"><a href='/trier/nom/<%= objOrdre.nom %>'><%= __("nom") %></a></th>
     		<th id="telCell"><a href='/trier/telephone/<%= objOrdre.telephone %>'><%= __("telephone") %></a></th>
             <th id="courrielCell"><a href='/trier/courriel/<%= objOrdre.courriel %>'><%= __("courriel") %></a></th>
-    		<th colspan="3"><a href="/ajouter"><i id="ajouter" class="fas fa-plus-circle"></i></a></th>
+    		<th colspan="3"><a id="ajouter" href="#"><i id="ajouter" class="fas fa-plus-circle"></i></a></th>
     	</tr>
-        <tr>
+
+
+        <tr class="gabaritTr"> 
+            <td class="_id" ></td>
+            <td class="prenom" contenteditable='true' value =''></td>
+            <td class="nom" contenteditable='true' value =''></td>
+            <td class="telephone" contenteditable='true' value =''></td>
+            <td class="courriel" contenteditable='true' value =''></td>
+            <td><a class="detruire" href="#"><i id="supprimer" class="fas fa-trash-alt detruire"></i></a></td>
+            <td><a class='modifier' href="#"><i id="modifier" class="fas fa-save"></i></a></td>
+            <td><a href="#"><i id="profil" class="fas fa-user"></i></i></a></td>
+        </tr>
+
+
+        
         <% let noLigne = 0 %> 
-        <% for (elm of adresses) { %>  
+        <% for (elm of adresses) { %> 
+            <tr> 
             <% for (p in elm) { %>
                 <% if (noLigne == 0){ %>
                     <td class="<%= p %>" ><%= elm[p] %></td>
@@ -35,11 +50,10 @@ if(locals.cle){
                 <% } %>
                 <% noLigne++ %>
             <% } %>
-                        <td><a href="/detruire/<%= elm._id %>"><i id="supprimer" class="fas fa-trash-alt"></i></a></td>
+                        <td><a class="detruire" href="#"><i id="supprimer" class="fas fa-trash-alt detruire"></i></a></td>
                         <td><a class='modifier' href="#"><i id="modifier" class="fas fa-save"></i></a></td>
-                        <td><a href="/profil/<%= elm._id %>"><i id="modifier" class="fas fa-user"></i></i></a></td>
+                        <td><a href="/profil/<%= elm._id %>"><i id="profil" class="fas fa-user"></i></i></a></td>
             </tr>
         <% } %>
     </table>
-    <button id='testAJAX'>test AJAX</button>
 </div>

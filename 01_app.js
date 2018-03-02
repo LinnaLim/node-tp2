@@ -210,3 +210,22 @@ app.post('/ajax_modifier', (req, res) => {
         res.send(JSON.stringify(req.body));
     });
 });
+
+///////////////////////////////////////////////////// Route /ajax_ajouter
+app.post('/ajax_ajouter', (req, res) => {
+	db.collection('adresse').save(req.body, (err, result) => {
+		if (err) return console.log(err);
+		console.log(result);
+		//ramene à la page Membres
+		res.send(JSON.stringify(result.requestId));
+	});
+});
+
+///////////////////////////////////////////////////// Route /ajax_detruire
+app.post('/ajax_detruire', (req, res) => {
+	db.collection('adresse').findOneAndDelete({'_id':ObjectID(req.body.id)}, (err, result) => {
+		if (err) return console.log(err);
+		//ramene à la page Membres
+		res.send(JSON.stringify(req.body));
+	});
+});
