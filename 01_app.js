@@ -1,7 +1,3 @@
-//Express
-const express = require('express');
-const app = express();
-app.use(express.static('public'));
 // fs
 const fs = require('fs');
 // Body-parser
@@ -13,11 +9,9 @@ const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 /* on associe le moteur de vue au module «ejs» */
 app.set('view engine', 'ejs'); // générateur de template
-
 // Cookie-parser
 var cookieParser = require('cookie-parser');
 app.use(cookieParser());
-
 // i18n
 const i18n = require("i18n");
 i18n.configure({ 
@@ -30,6 +24,15 @@ app.use(i18n.init);
 
 const peupler = require("./modules/peupler");
 let util =  require("util");
+//Express
+const express = require('express');
+const app = express();
+app.use(express.static('public'));
+// Socket.io
+const http = require('http');
+const server = http.Server(app);
+const io = require('./modules/chat_socket').listen(server);
+
 
 ////////////////////////////////////////////////////////// Connexion à MongoDB à au Serveur Node.js
 let db // variable qui contiendra le lien sur la BD
@@ -37,7 +40,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017', (err, database) => {
 	if (err) return console.log(err);
 	db = database.db('carnet_adresse');
 	// lancement du serveur Express sur le port 8081
-	app.listen(8081, () => {
+	server.listen(8081, () => {
 		console.log('connexion à la BD et on écoute sur le port 8081');
 	});
 });
@@ -178,3 +181,7 @@ app.post('/ajax_detruire', (req, res) => {
 		res.send(JSON.stringify(req.body));
 	});
 });
+
+app.get("/chat", (req, result) =>){
+	res.render('socket_vue.ejs')
+}
