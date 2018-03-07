@@ -66,7 +66,7 @@ app.get('/adresses', function (req, res) {
 ///////////////////////////////////////////////////// Route /trier
 app.get('/trier/:cle/:ordre', (req, res) => {
     let cle = req.params.cle;
-    let ordre = (req.params.ordre == 'asc' ? 1 : -1);
+    let ordre = (req.params.ordre == 'asc' ? 1 : -1); 
     let cursor = db.collection('adresse').find().sort(cle, ordre).toArray((err, resultat) =>{
         ordre = ordre == 1 ? 'desc' : 'asc';
         res.render('adresses.ejs', {adresses: resultat, cle, ordre });
@@ -151,14 +151,6 @@ app.get('/:locale(en|fr)',  (req, res) => {
 
 ///////////////////////////////////////////////////// Route /ajax_modifier
 app.post('/ajax_modifier', (req, res) => {
-    // let oModif = {
-    //     "_id": ObjectID(req.body['_id']),
-    //     prenom: req.body.prenom,
-    //     nom: req.body.nom,
-    //     telephone: req.body.telephone,
-    //     courriel: req.body.courriel
-    // }    
-
     req.body._id = ObjectID(req.body._id);
     console.log(req.body._id);
     // Sauver l'objet dans la BDD
@@ -174,7 +166,7 @@ app.post('/ajax_ajouter', (req, res) => {
 		if (err) return console.log(err);
 		console.log(result);
 		//ramene à la page Membres
-		res.send(JSON.stringify(result.requestId));
+		res.send(JSON.stringify(req.body));
 	});
 });
 

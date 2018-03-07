@@ -15,12 +15,12 @@ if(locals.cle){
 <div id="containerTableau">
     <table class="tableau">
     	<tr>
-    		<th id="idCell"><a href='/trier/_id/<%= objOrdre._id %>'><%= __("Id") %></a></th>
-    		<th id="prenomCell"><a href='/trier/prenom/<%= objOrdre.prenom %>'><%= __("prenom") %></a></th> 
-    		<th id="nomCell"><a href='/trier/nom/<%= objOrdre.nom %>'><%= __("nom") %></a></th>
-    		<th id="telCell"><a href='/trier/telephone/<%= objOrdre.telephone %>'><%= __("telephone") %></a></th>
-            <th id="courrielCell"><a href='/trier/courriel/<%= objOrdre.courriel %>'><%= __("courriel") %></a></th>
-    		<th colspan="3"><a id="ajouter" href="#"><i id="ajouter" class="fas fa-plus-circle"></i></a></th>
+    		<th id="idCell"><a href='/trier/_id/<%= objOrdre._id %>'><%= __("Id") %><i class="fas fa-<%= (objOrdre._id=='asc'?'sort-up': 'sort-down') %>"></i></a></th>
+    		<th id="prenomCell"><a href='/trier/prenom/<%= objOrdre.prenom %>'><%= __("prenom") %><i class="fas fa-<%= (objOrdre.prenom=='asc'?'sort-up': 'sort-down') %>"></i></a></th> 
+    		<th id="nomCell"><a href='/trier/nom/<%= objOrdre.nom %>'><%= __("nom") %><i class="fas fa-<%= (objOrdre.nom=='asc'?'sort-up': 'sort-down') %>"></i></a></th>
+    		<th id="telCell"><a href='/trier/telephone/<%= objOrdre.telephone %>'><%= __("telephone") %><i class="fas fa-<%= (objOrdre.telephone=='asc'?'sort-up': 'sort-down') %>"></i></a></th>
+            <th id="courrielCell"><a href='/trier/courriel/<%= objOrdre.courriel %>'><%= __("courriel") %><i class="fas fa-<%= (objOrdre.courriel=='asc'?'sort-up': 'sort-down') %>"></i></a></th>
+    		<th colspan="3"><a id="ajouter" href="#"><i class="fas fa-plus-circle"></i></a></th>
     	</tr>
 
 
@@ -30,7 +30,7 @@ if(locals.cle){
             <td class="nom" contenteditable='true' value =''></td>
             <td class="telephone" contenteditable='true' value =''></td>
             <td class="courriel" contenteditable='true' value =''></td>
-            <td><a class="detruire" href="#"><i id="supprimer" class="fas fa-trash-alt detruire"></i></a></td>
+            <td><a class="detruire" href="#"><i id="supprimer" class="fas fa-trash-alt"></i></a></td>
             <td><a class='modifier' href="#"><i id="modifier" class="fas fa-save"></i></a></td>
             <td><a href="#"><i id="profil" class="fas fa-user"></i></i></a></td>
         </tr>
@@ -50,7 +50,7 @@ if(locals.cle){
                 <% } %>
                 <% noLigne++ %>
             <% } %>
-                        <td><a class="detruire" href="#"><i id="supprimer" class="fas fa-trash-alt detruire"></i></a></td>
+                        <td><a class="detruire" href="#"><i id="supprimer" class="fas fa-trash-alt"></i></a></td>
                         <td><a class='modifier' href="#"><i id="modifier" class="fas fa-save"></i></a></td>
                         <td><a href="/profil/<%= elm._id %>"><i id="profil" class="fas fa-user"></i></i></a></td>
             </tr>

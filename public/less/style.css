@@ -1,0 +1,189 @@
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: arial;
+  /*////////////////////////// HEADER */
+
+  /*FIN HEADER */
+
+  /*////////////////////////// FOOTER */
+
+  /* FIN FOOTER */
+
+}
+body header {
+  background-color: #34495e;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  /*////////////////////////// NAVIGATION */
+
+}
+body header h1 {
+  color: #ffffff;
+  margin: 0 auto;
+  padding: 1em;
+}
+body header nav .langue {
+  font-size: 150%;
+  padding: 0.5em;
+  color: #ffffff;
+  text-decoration: none;
+  position: absolute;
+  top: 1em;
+  right: 1em;
+}
+body header nav ul {
+  list-style-type: none;
+  padding: 1em 0.5em 0.5em 0.5em;
+  margin: 0 auto;
+}
+body header nav ul li {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+body header nav ul li a {
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 150%;
+  padding: 0.5em;
+  color: #ffffff;
+  flex: 1;
+  transition: background-color 1s;
+}
+body header nav ul li a .menu {
+  padding-right: 0.5em;
+}
+body header nav ul li a:hover {
+  background-color: #aaaaaa;
+}
+body section {
+  margin: 0 2vw 0 2vw;
+}
+body section .mon_formulaire {
+  display: none;
+  flex-direction: column;
+}
+body section .mon_formulaire input[type="text"] {
+  margin: 1em 0 0 0;
+  width: 300px;
+  border-radius: 10px;
+}
+body section .mon_formulaire input[type="submit"] {
+  margin: 2em 0 4em 0;
+  width: 100px;
+  border-radius: 10px;
+}
+body section #containerTableau {
+  overflow-x: auto;
+  margin: 1em 0 14em 0;
+}
+body section #containerTableau .tableau {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #000000;
+}
+body section #containerTableau .tableau .gabaritTr {
+  display: none;
+}
+body section #containerTableau .tableau tr {
+  border: 1px solid #000000;
+}
+body section #containerTableau .tableau tr th {
+  border: 1px solid #000000;
+}
+body section #containerTableau .tableau tr th a {
+  color: #000000;
+  text-decoration: none;
+  padding: 0.25em 1em 0.25em 1em;
+}
+body section #containerTableau .tableau tr #idCell,
+body section #containerTableau .tableau tr ._id,
+body section #containerTableau .tableau tr #telCell,
+body section #containerTableau .tableau tr .telephone,
+body section #containerTableau .tableau tr #courrielCell,
+body section #containerTableau .tableau tr .courriel,
+body section #containerTableau .tableau tr .domaine {
+  display: none;
+}
+body section #containerTableau .tableau tr td {
+  border: 1px solid #000000;
+  padding: 0.1em 0.5em 0.1em 0.5em;
+}
+body section #containerProfil {
+  padding: 1em 0 10em 0;
+}
+body footer {
+  background-color: #34495e;
+  color: #ffffff;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+body footer div {
+  width: 5%;
+}
+body footer div i {
+  color: #ffffff;
+  transition: color 1s;
+}
+body footer div i:hover {
+  color: #cccccc;
+}
+body footer div a {
+  color: #ffffff;
+  text-decoration: none;
+}
+body footer div a:hover {
+  color: #cccccc;
+}
+/* //////////////////////////////////////////// Ipad */
+@media only screen and (min-width: 700px) {
+  body header {
+    justify-content: space-between;
+    align-items: center;
+  }
+  body header nav {
+    display: flex;
+    flex: 1;
+  }
+  body header nav ul {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  body section {
+    margin: 0 15vw 0 15vw;
+  }
+  body section #containerTableau .tableau tr .telephone,
+  body section #containerTableau .tableau tr #telCell {
+    display: table-cell;
+  }
+  body footer div a .fa {
+    font-size: 2em;
+  }
+}
+/* //////////////////////////////////////////// Grand Écran */
+@media only screen and (min-width: 1024px) {
+  body header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  body section {
+    margin: 0 8vw 0 8vw;
+  }
+  body section #containerTableau .tableau tr ._id,
+  body section #containerTableau .tableau tr #idCell,
+  body section #containerTableau .tableau tr .courriel,
+  body section #containerTableau .tableau tr #courrielCell,
+  body section #containerTableau .tableau tr .domaine {
+    display: table-cell;
+  }
+}

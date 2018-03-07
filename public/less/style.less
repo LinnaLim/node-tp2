@@ -84,11 +84,14 @@ body {
 			overflow-x:auto;
 			margin: 1em 0 14em 0;
 				& .tableau {
-				border-collapse: collapse;
-	    		border-spacing: 0;
-	    		width: 100%;
-				border: 1px solid @couleurNoire;
-					tr{
+					border-collapse: collapse;
+		    		border-spacing: 0;
+		    		width: 100%;
+					border: 1px solid @couleurNoire;
+					& .gabaritTr {
+						display: none;
+					}
+					& tr{
 						border: 1px solid @couleurNoire;
 						th {
 							border: 1px solid @couleurNoire;
