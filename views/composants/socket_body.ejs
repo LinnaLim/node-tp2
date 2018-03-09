@@ -8,7 +8,7 @@
 	<table id='list_user'></table>
 	<h3>Message</h3>
 	<table id='message'>
-		<tr id='gabaritMessage'>
+		<tr class='gabaritMessage'>
 			<td class="messageUser"></td>
 			<td class="contenu"></td>
 		</tr>
@@ -51,19 +51,16 @@
 				afficher_mon_message(data.user, data.message, '#00f');
 			});
 
-
-
-
 		});
 	}
-	/* ---------------------------------------------------------- */
+	/* Connexion ---------------------------------------------------------- */
 	function enregistrement(){
 		var elmUser = document.querySelector('#enregistrement input');
 		console.log(elmUser.value);
 		/* l'événement « setUser » est transmit avec un objet */
 		socket.emit('setUser', {user : elmUser.value});
 	}
-
+	/* Transmition du message --------------------------------------------- */
 	function transmettre_un_message(){
 		var elmMessage = document.querySelector('#message_a_transmettre input');
 		console.log(elmMessage.value);
@@ -71,10 +68,11 @@
 		*/
 		socket.emit('setMessage', {message : elmMessage.value});
 	}
+	/* Ajouter les user dans les tables ---------------------------------------------------------- */
 	function affiche_table_users(data){
 		let sChaine = ''
 		for (id in data){
-			sChaine += '<tr>'
+			sChaine += '<tr id="'+id+'">'
 					+ '<td>' + id + '</td>'
 					+ '<td>' + data[id] + '</td>' 
 					+ '</tr>';
@@ -85,12 +83,13 @@
 	}
 	function afficher_mon_message(user, message, couleur){
 		let elmListeMessage = document.querySelector("#message");
-		let ligneMessage = document.querySelector("#gabaritMessage");
+		let ligneMessage = document.querySelector(".gabaritMessage");
 		let clone = ligneMessage.cloneNode(true);
 		// Mettre mes information dans les td
 		clone.querySelector(".messageUser").innerText = user;
 		clone.querySelector(".contenu").innerText = message;
 		clone.style.color = couleur;
+		clone.classList.remove("gabaritMessage");
 		elmListeMessage.appendChild(clone);
 	}
 </script>

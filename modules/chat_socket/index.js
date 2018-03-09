@@ -23,8 +23,9 @@ module.exports.listen = function(server){
     		socket.broadcast.emit('diffuser_message', data); // envoyer à tout le monde sauf lui même
     		socket.emit('valide_message', data);
     	});
-    	socket.on('disconnect', function(){
+    	socket.on('disconnect', function(data){
     		delete objUtilisateur[socket.id];
+    		console.log('deconnexion!');
     		io.sockets.emit('diffuser_list_user', objUtilisateur); // envoyer à tout le monde
     	});
 	});
