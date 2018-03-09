@@ -4,11 +4,18 @@
 	<button onclick="enregistrement()">Enregistrement</button>
 </section>
 <section id='chat' style="display: none;">
+	<h3>Utilisateurs en ligne</h3>
 	<table id='list_user'></table>
-	<table id='message'></table>
+	<h3>Message</h3>
+	<table id='message'>
+		<tr id='gabaritMessage'>
+			<td class="messageUser"></td>
+			<td class="contenu"></td>
+		</tr>
+	</table>
 	<section id='message_a_transmettre'>
 		<input type="text" name="txtMessage">
-		<button onclick='transmettre_un_message()'>Message</button>
+		<button onclick='transmettre_un_message()'>Envoyer</button>
 	</section>
 </section>
 <script type="text/javascript">
@@ -20,7 +27,8 @@
 	*/
 	window.onload = ()=>{
 		socket = io();
-		console.log(socket.id);
+		//console.log(socket.id);
+
 		socket.on('connect', function(){
 			console.log('Le socket id = ' + socket.id); 
 			/* l'événement ackUser a été transmis par le serveur */ 
@@ -36,11 +44,11 @@
 			});
 			socket.on('valide_message', function(data){
 				console.log('valide_message = ' + data);
-				afficher_mon_message(data, '#0f0');
+				afficher_mon_message(data.user, data.message, '#0f0');
 			});
 			socket.on('diffuser_message', function(data){
 				console.log('diffuer_message = ' + data);
-				afficher_mon_message(data, '#00f');
+				afficher_mon_message(data.user, data.message, '#00f');
 			});
 
 
@@ -61,7 +69,7 @@
 		console.log(elmMessage.value);
 		/* l'événement « setUser » est transmit avec un objet 
 		*/
-		socket.emit('setMessage', {massage : elmMessage.value});
+		socket.emit('setMessage', {message : elmMessage.value});
 	}
 	function affiche_table_users(data){
 		let sChaine = ''
@@ -75,17 +83,14 @@
 		let elmListeUser = document.querySelector("#list_user");
 		elmListeUser.innerHTML = sChaine;
 	}
-	function affiche_mon_message(data, couleur){
-		let sChaine = ''
-		for (id in data){
-			sChaine += '<tr>'
-					+ '<td>' + id + '</td>'
-					+ '<td>' + data[id] + '</td>' 
-					+ '</tr>';
-		}
-		
+	function afficher_mon_message(user, message, couleur){
 		let elmListeMessage = document.querySelector("#message");
-		elmListeMessage.innerHTML = sChaine;
-		elmListeMessage.style.color = couleur;
+		let ligneMessage = document.querySelector("#gabaritMessage");
+		let clone = ligneMessage.cloneNode(true);
+		// Mettre mes information dans les td
+		clone.querySelector(".messageUser").innerText = user;
+		clone.querySelector(".contenu").innerText = message;
+		clone.style.color = couleur;
+		elmListeMessage.appendChild(clone);
 	}
 </script>
