@@ -22,8 +22,8 @@
 				let elmTableau = document.querySelector(".tableau");
 	        	let ligneTab = document.querySelector(".gabaritTr");
 				let clone = ligneTab.cloneNode(true);
-				elmTableau.querySelector(".modifier").addEventListener("click", modifier, false);
-				elmTableau.querySelector(".detruire").addEventListener("click", detruire, false);
+				clone.querySelector(".modifier").addEventListener("click", modifier, false);
+				clone.querySelector(".detruire").addEventListener("click", detruire, false);
 				clone.classList.remove("gabaritTr");
 				clone.querySelector("._id").innerText = maReponse._id;
 				elmTableau.appendChild(clone);

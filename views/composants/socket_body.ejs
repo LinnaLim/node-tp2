@@ -1,7 +1,15 @@
-<h2>Clavardage<!-- <%= message %> --></h2>
+<h2><%= __("clavardage") %></h2>
 <section id="enregistrement">
 	<input type="text">
 	<button onclick="enregistrement()">Enregistrement</button>
+</section>
+<section id='chat' style="display: none;">
+	<table id='list_user'></table>
+	<table id='message'></table>
+	<section id='message_a_transmettre'>
+		<input type="text" name="txtMessage">
+		<button onclick='transmettre_un_message()'>Message</button>
+	</section>
 </section>
 <script type="text/javascript">
 	/* 
@@ -18,31 +26,66 @@
 			/* l'événement ackUser a été transmis par le serveur */ 
 			socket.on('valide_user', function(data){
 				console.log('data en provenance du serveur = ' + data.user);
-				let elmEnregistrement = document.getElementbyId('enregistrement');
+				let elmEnregistrement = document.querySelector('#enregistrement');
 				elmEnregistrement.style.display = 'none';
-				let elmChat = document.getElementbyId('chat');
+				let elmChat = document.querySelector('#chat');
 				elmChat.style.display = 'flex';
 			});
 			socket.on('diffuser_list_user', function(data){
-				let sChaine = ''
-				for (id in data){
-					sChaine += '<tr>'
-							+ '<td>' + id + '</td>'
-							+ '<td>' + data[id] + '</td>' 
-							+ '</tr>'
-				}
-				
-				let elmListeUser = document.getElementbyId("list_user");
-				elmListeUser.innerHTML = sChaine;
+				affiche_table_users(data);
 			});
+			socket.on('valide_message', function(data){
+				console.log('valide_message = ' + data);
+				afficher_mon_message(data, '#0f0');
+			});
+			socket.on('diffuser_message', function(data){
+				console.log('diffuer_message = ' + data);
+				afficher_mon_message(data, '#00f');
+			});
+
+
+
+
 		});
 	}
 	/* ---------------------------------------------------------- */
 	function enregistrement(){
 		var elmUser = document.querySelector('#enregistrement input');
 		console.log(elmUser.value);
+		/* l'événement « setUser » est transmit avec un objet */
+		socket.emit('setUser', {user : elmUser.value});
+	}
+
+	function transmettre_un_message(){
+		var elmMessage = document.querySelector('#message_a_transmettre input');
+		console.log(elmMessage.value);
 		/* l'événement « setUser » est transmit avec un objet 
 		*/
-		socket.emit('setUser', {user : elmUser.value});
+		socket.emit('setMessage', {massage : elmMessage.value});
+	}
+	function affiche_table_users(data){
+		let sChaine = ''
+		for (id in data){
+			sChaine += '<tr>'
+					+ '<td>' + id + '</td>'
+					+ '<td>' + data[id] + '</td>' 
+					+ '</tr>';
+		}
+		
+		let elmListeUser = document.querySelector("#list_user");
+		elmListeUser.innerHTML = sChaine;
+	}
+	function affiche_mon_message(data, couleur){
+		let sChaine = ''
+		for (id in data){
+			sChaine += '<tr>'
+					+ '<td>' + id + '</td>'
+					+ '<td>' + data[id] + '</td>' 
+					+ '</tr>';
+		}
+		
+		let elmListeMessage = document.querySelector("#message");
+		elmListeMessage.innerHTML = sChaine;
+		elmListeMessage.style.color = couleur;
 	}
 </script>

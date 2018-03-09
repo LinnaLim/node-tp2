@@ -1,3 +1,7 @@
+//Express
+const express = require('express');
+const app = express();
+app.use(express.static('public'));
 // fs
 const fs = require('fs');
 // Body-parser
@@ -24,10 +28,6 @@ app.use(i18n.init);
 
 const peupler = require("./modules/peupler");
 let util =  require("util");
-//Express
-const express = require('express');
-const app = express();
-app.use(express.static('public'));
 // Socket.io
 const http = require('http');
 const server = http.Server(app);
@@ -182,6 +182,6 @@ app.post('/ajax_detruire', (req, res) => {
 	});
 });
 
-app.get("/chat", (req, result) =>){
+app.get("/chat", (req, res) =>{
 	res.render('socket_vue.ejs')
-}
+});
