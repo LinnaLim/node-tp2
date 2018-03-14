@@ -14,5 +14,6 @@
 	"bienvenue": "Welcome",
 	"pAccueil": "You can see the member's list.",
 	"bonneVisite": "Have a good visit",
-	"clavardage": "Chat"
+	"clavardage": "Chat",
+	"clavardageText": "You will disconnect yourself automatically when you leave the page."
 }
