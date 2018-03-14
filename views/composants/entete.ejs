@@ -1,17 +1,22 @@
 <header class='entete'>
 	<h1><%= __("titreSite") %></h1>
+	<input id='burger' type='checkbox'>
+	<label for='burger'>
+		<i class="fa fa-times" aria-hidden="true"></i>
+		<i class="fa fa-bars" aria-hidden="true"></i>
+	</label>
+	<% if (getLocale() == 'fr'){ %>
+		<a class="langue" href='/en'>EN</a>
+	<% } else { %>
+		<a class="langue" href='/fr'>FR</a>
+	<% } %>
 	<nav> 
 		<ul>
-			<li><a href='/'><i class="fas fa-home menu"></i></i><%= __("accueil") %></a></li>
-			<li><a href='/adresses'><i class="fas fa-address-book menu"></i></i><%= __("adresses") %></a></li>
+			<li><a href='/'><i class="fas fa-home menu"></i><%= __("accueil") %></a></li>
+			<li><a href='/adresses'><i class="fas fa-address-book menu"></i><%= __("adresses") %></a></li>
 			<li><a href='/peupler'><i class="fa fa fa-users menu" aria-hidden="true"></i><%= __("peuplement") %></a></li>
-			<li><a href='/vider'><i class="fas fa-trash-alt menu"></i></i><%= __("vider") %></a></li>
-			<li><a href='/chat'><i class="fas fa-trash-alt menu"></i></i><%= __("clavardage") %></a></li>
+			<li><a href='/vider'><i class="fas fa-trash-alt menu"></i><%= __("vider") %></a></li>
+			<li><a href='/chat'><i class="fas fa-comments menu"></i><%= __("clavardage") %></a></li>
 		</ul>
-		<% if (getLocale() == 'fr'){ %>
-			<a class="langue" href='/en'>EN</a>
-		<% } else { %>
-			<a class="langue" href='/fr'>FR</a>
-		<% } %>
 	</nav> 
 </header>
