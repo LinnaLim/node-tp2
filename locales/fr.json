@@ -15,5 +15,6 @@
 	"pAccueil": "Vous pouvez voir notre liste de membre.",
 	"bonneVisite": "Bonne Visite",
 	"clavardage": "Clavardage",
-	"clavardageText": "Vous vous déconnectez automatiquement lorsque vous quittez la page."
+	"clavardageText": "Vous vous déconnectez automatiquement lorsque vous quittez la page.",
+	"messagePlaceholder": "E"
 }

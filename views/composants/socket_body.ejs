@@ -1,5 +1,6 @@
 <h2><%= __("clavardage") %></h2>
 <section id="enregistrement">
+	<p class="erreurConnexion">Entrez un nom d'utilisateur pour accéder au clavardage</p>
 	<input type="text">
 	<button onclick="enregistrement()">Enregistrement</button>
 </section>
@@ -11,14 +12,16 @@
 	</div>
 	<div id="conteneurMessage">
 		<h3>Message</h3>
-		<table id='message'>
-			<tr class='gabaritMessage'>
-				<td class="messageUser"></td>
-				<td class="contenu"></td>
-			</tr>
-		</table>
+		<div>
+			<table id='message'>
+				<tr class='gabaritMessage'>
+					<td class="messageUser"></td>
+					<td class="contenu"></td>
+				</tr>
+			</table>
+		</div>
 		<section id='message_a_transmettre'>
-			<input type="text" name="txtMessage">
+			<textarea rows="4" name="message" form="usrform"></textarea>
 			<button onclick='transmettre_un_message()'>Envoyer</button>
 		</section>
 	</div>

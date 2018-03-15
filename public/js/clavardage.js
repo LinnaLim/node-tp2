@@ -23,11 +23,11 @@ window.onload = ()=>{
 		});
 		socket.on('valide_message', function(data){
 			console.log('valide_message = ' + data);
-			afficher_mon_message(data.user, data.message, '#0f0');
+			afficher_mon_message(data.user, data.message, '#273c75');
 		});
 		socket.on('diffuser_message', function(data){
 			console.log('diffuer_message = ' + data);
-			afficher_mon_message(data.user, data.message, '#00f');
+			afficher_mon_message(data.user, data.message, '#44bd32');
 		});
 
 	});
@@ -35,24 +35,32 @@ window.onload = ()=>{
 /* Connexion ---------------------------------------------------------- */
 function enregistrement(){
 	var elmUser = document.querySelector('#enregistrement input');
+	var elmErreur = document.querySelector('#enregistrement .erreurConnexion');
 	console.log(elmUser.value);
 	/* l'événement « setUser » est transmit avec un objet */
-	socket.emit('setUser', {user : elmUser.value});
+	if (elmUser.value != ''){
+		elmErreur.style.display = 'none';
+		socket.emit('setUser', {user : elmUser.value});
+	} else {
+		elmErreur.style.display = 'flex';
+	}
 }
 /* Transmition du message --------------------------------------------- */
 function transmettre_un_message(){
-	var elmMessage = document.querySelector('#message_a_transmettre input');
+	var elmMessage = document.querySelector('#message_a_transmettre textarea');
 	console.log(elmMessage.value);
-	/* l'événement « setUser » est transmit avec un objet 
-	*/
-	socket.emit('setMessage', {message : elmMessage.value});
+	/* l'événement « setUser » est transmit avec un objet */
+	if (elmMessage.value != ''){
+		socket.emit('setMessage', {message : elmMessage.value});
+		elmMessage.value = "";
+	}
 }
 /* Ajouter les user dans les tables ---------------------------------------------------------- */
 function affiche_table_users(data){
 	let sChaine = ''
 	for (id in data){
-		sChaine += '<tr id="'+id+'">'
-				+ '<td>' + id + '</td>'
+		sChaine += '<tr class="ligneMessage">'
+				+ '<td class="idUser">' + id + '</td>'
 				+ '<td>' + data[id] + '</td>' 
 				+ '</tr>';
 	}

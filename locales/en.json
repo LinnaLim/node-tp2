@@ -15,5 +15,6 @@
 	"pAccueil": "You can see the member's list.",
 	"bonneVisite": "Have a good visit",
 	"clavardage": "Chat",
-	"clavardageText": "You will disconnect yourself automatically when you leave the page."
+	"clavardageText": "You will disconnect yourself automatically when you leave the page.",
+	"messagePlaceholder": "Enter your message here"
 }
