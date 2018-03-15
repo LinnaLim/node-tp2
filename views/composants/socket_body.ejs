@@ -1,17 +1,17 @@
 <h2><%= __("clavardage") %></h2>
 <section id="enregistrement">
-	<p class="erreurConnexion">Entrez un nom d'utilisateur pour accéder au clavardage</p>
+	<p class="erreurConnexion"><%= __("msgErreur") %></p>
 	<input type="text">
-	<button onclick="enregistrement()">Enregistrement</button>
+	<button onclick="enregistrement()"><%= __("connexion") %></button>
 </section>
 <section id='chat' style="display: none;">
 	<div id="conteneurUser">
-		<h3>Utilisateurs en ligne</h3>
+		<h3><%= __("listeUser") %></h3>
 		<table id='list_user'></table>
 		<p><%= __("clavardageText") %></p>
 	</div>
 	<div id="conteneurMessage">
-		<h3>Message</h3>
+		<h3><%= __("clavardage") %></h3>
 		<div>
 			<table id='message'>
 				<tr class='gabaritMessage'>
@@ -22,7 +22,7 @@
 		</div>
 		<section id='message_a_transmettre'>
 			<textarea rows="4" name="message" form="usrform"></textarea>
-			<button onclick='transmettre_un_message()'>Envoyer</button>
+			<button onclick='transmettre_un_message()'><%= __("envoyer") %></button>
 		</section>
 	</div>
 </section>

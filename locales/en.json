@@ -16,5 +16,8 @@
 	"bonneVisite": "Have a good visit",
 	"clavardage": "Chat",
 	"clavardageText": "You will disconnect yourself automatically when you leave the page.",
-	"messagePlaceholder": "Enter your message here"
+	"listeUser": "Sign in",
+	"envoyer": "Send",
+	"msgErreur": "Enter a user name to access the chat.",
+	"connexion": "connexion"
 }

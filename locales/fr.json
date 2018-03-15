@@ -16,5 +16,8 @@
 	"bonneVisite": "Bonne Visite",
 	"clavardage": "Clavardage",
 	"clavardageText": "Vous vous déconnectez automatiquement lorsque vous quittez la page.",
-	"messagePlaceholder": "E"
+	"listeUser": "Utilisateurs en ligne",
+	"connexion": "Se connecter",
+	"envoyer": "Envoyer",
+	"msgErreur" :"Entrez un nom d'utilisateur pour accéder au clavardage."
 }
