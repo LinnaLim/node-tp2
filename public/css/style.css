@@ -1,0 +1,415 @@
+body {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-family: arial;
+}
+body header {
+  background-color: #34495e;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 1vh;
+}
+body header h1 {
+  color: #ffffff;
+  margin: 0 auto;
+  padding: 2vh;
+}
+body header .langue {
+  font-size: 150%;
+  padding: 0.5em;
+  color: #ffffff;
+  text-decoration: none;
+  position: absolute;
+  right: 2px;
+}
+body header #burger {
+  display: none;
+}
+body header #burger + label {
+  position: absolute;
+  right: : 20px;
+  display: block;
+  border: 2px solid #ffffff;
+  padding: 2px;
+  border-radius: 10%;
+  width: 1.5em;
+  height: 1.5em;
+}
+body header #burger:checked + label svg:nth-child(1) {
+  display: block;
+  color: #ffffff;
+  padding: 20%;
+}
+body header #burger:checked + label svg:nth-child(2) {
+  display: none;
+}
+body header #burger + label svg:nth-child(1) {
+  display: none;
+}
+body header #burger + label svg:nth-child(2) {
+  display: block;
+  color: #ffffff;
+  padding: 20%;
+}
+body header #burger ~ nav {
+  position: absolute;
+  background-color: rgba(52, 73, 94, 0.8);
+  border: 2px solid #aaaaaa;
+  border-radius: 20px;
+  width: 200px;
+  left: 50px;
+  top: -200px;
+}
+body header #burger ~ nav ul {
+  list-style-type: none;
+  padding: 1em 0.5em 0.5em 0.5em;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-flow: column;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+body header #burger ~ nav ul li {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+body header #burger ~ nav ul li a {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-decoration: none;
+  font-size: 100%;
+  padding: 0.5em;
+  color: #ffffff;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-transition: background-color 1s;
+  -o-transition: background-color 1s;
+  transition: background-color 1s;
+}
+body header #burger ~ nav ul li a .menu {
+  padding-right: 0.5em;
+}
+body header #burger ~ nav ul li a:hover {
+  background-color: #aaaaaa;
+}
+body header #burger:checked ~ nav {
+  top: 0px;
+}
+body .principal {
+  margin: 0 2vw 0 2vw;
+  min-height: 75vh;
+}
+body .principal .mon_formulaire {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+body .principal .mon_formulaire input[type="text"] {
+  margin: 1em 0 0 0;
+  width: 300px;
+  border-radius: 10px;
+}
+body .principal .mon_formulaire input[type="submit"] {
+  margin: 2em 0 4em 0;
+  width: 100px;
+  border-radius: 10px;
+}
+body .principal #containerTableau {
+  overflow-x: auto;
+  margin: 1em 0 0 0;
+}
+body .principal #containerTableau .tableau {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #000000;
+}
+body .principal #containerTableau .tableau .gabaritTr {
+  display: none;
+}
+body .principal #containerTableau .tableau tr {
+  border: 1px solid #000000;
+}
+body .principal #containerTableau .tableau tr th {
+  border: 1px solid #000000;
+}
+body .principal #containerTableau .tableau tr th a {
+  color: #000000;
+  text-decoration: none;
+  padding: 0.25em 1em 0.25em 1em;
+}
+body .principal #containerTableau .tableau tr #idCell,
+body .principal #containerTableau .tableau tr ._id,
+body .principal #containerTableau .tableau tr #telCell,
+body .principal #containerTableau .tableau tr .telephone,
+body .principal #containerTableau .tableau tr #courrielCell,
+body .principal #containerTableau .tableau tr .courriel,
+body .principal #containerTableau .tableau tr .domaine {
+  display: none;
+}
+body .principal #containerTableau .tableau tr td {
+  border: 1px solid #000000;
+  padding: 0.1em 0.5em 0.1em 0.5em;
+}
+body .principal #containerProfil {
+  padding: 1em 0 10em 0;
+}
+body .principal #enregistrement .erreurConnexion {
+  display: none;
+  color: #c23616;
+  font-weight: bold;
+}
+body .principal #chat {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-flow: column;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  width: 90vw;
+  min-height: 65vh;
+}
+body .principal #chat #conteneurUser {
+  background-color: #aaaaaa;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-flow: column;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 2vw;
+}
+body .principal #chat #conteneurUser #list_user {
+  table-layout: fixed;
+  width: 90%;
+  border: 1px solid #000000;
+  border-radius: 8px;
+}
+body .principal #chat #conteneurUser #list_user .ligneMessage td {
+  overflow: hidden;
+  white-space: wrap;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+}
+body .principal #chat #conteneurUser #list_user .ligneMessage .idUser {
+  display: none;
+}
+body .principal #chat #conteneurUser #list_user tr:nth-child(even) {
+  background-color: #cccccc;
+}
+body .principal #chat #conteneurMessage {
+  width: 100%;
+  background-color: #cccccc;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-flow: column nowrap;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 2vw;
+}
+body .principal #chat #conteneurMessage div {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-height: 10vh;
+  max-height: 40vh;
+  width: 90%;
+  overflow-y: auto;
+  background-color: #ffffff;
+}
+body .principal #chat #conteneurMessage div #message {
+  table-layout: fixed;
+  width: 99%;
+  min-height: 10vh;
+  max-height: 40vh;
+  padding: 1vw;
+}
+body .principal #chat #conteneurMessage div #message .gabaritMessage {
+  display: none;
+}
+body .principal #chat #conteneurMessage div #message tr td {
+  word-wrap: break-word;
+}
+body .principal #chat #conteneurMessage #message_a_transmettre {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-flow: column nowrap;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+}
+body .principal #chat #conteneurMessage #message_a_transmettre textarea {
+  width: 80vw !important;
+  height: 5vh !important;
+  border-radius: 10px;
+}
+body footer {
+  background-color: #34495e;
+  color: #ffffff;
+  min-height: 5vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+body footer p {
+  width: 90%;
+  padding: 0.5vh;
+}
+/* //////////////////////////////////////////// Ipad */
+@media only screen and (min-width: 700px) {
+  body .principal {
+    margin: 0 8vw 0 8vw;
+    min-height: 84vh;
+  }
+  body .principal #containerTableau .tableau tr .telephone,
+  body .principal #containerTableau .tableau tr #telCell {
+    display: table-cell;
+  }
+  body .principal #chat {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-flow: row;
+        -ms-flex-flow: row;
+            flex-flow: row;
+    width: 100%;
+    min-height: 76vh;
+  }
+  body .principal #chat #conteneurUser {
+    width: 30vw;
+  }
+  body .principal #chat #conteneurUser #list_user {
+    width: 20vw;
+    border-radius: 8px;
+  }
+  body .principal #chat #conteneurUser #list_user .ligneMessage td {
+    word-wrap: break-word;
+  }
+  body .principal #chat #conteneurMessage div {
+    overflow-y: auto;
+    height: 55vh;
+  }
+  body .principal #chat #conteneurMessage div #message {
+    width: 50vw;
+    height: 45vh;
+  }
+  body .principal #chat #conteneurMessage div #message tr td {
+    word-wrap: break-word;
+  }
+  body .principal #chat #conteneurMessage #message_a_transmettre textarea {
+    width: 50vw !important;
+  }
+  body footer div a .fa {
+    font-size: 2em;
+  }
+}
+/* //////////////////////////////////////////// Grand Écran */
+@media only screen and (min-width: 1024px) {
+  body .principal {
+    margin: 0 8vw 0 8vw;
+    min-height: 79vh;
+  }
+  body .principal #containerTableau .tableau tr ._id,
+  body .principal #containerTableau .tableau tr #idCell,
+  body .principal #containerTableau .tableau tr .courriel,
+  body .principal #containerTableau .tableau tr #courrielCell,
+  body .principal #containerTableau .tableau tr .domaine {
+    display: table-cell;
+  }
+  body .principal #chat {
+    width: 100%;
+    min-height: 68vh;
+  }
+  body .principal #chat #conteneurMessage div {
+    height: 40vh;
+  }
+  body .principal #chat #conteneurMessage div #message {
+    height: 40vh;
+  }
+}
